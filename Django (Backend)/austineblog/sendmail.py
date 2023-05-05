@@ -35,4 +35,11 @@ async def main():
     
 @receiver(post_save, sender=Post)
 def new_blog_added(sender, instance, **kwargs):
+    
+    #text = strip_tags(instance.text)
+    #formatted_text = "<p>" + text.replace("\n", "</p><p>") + "</p>"
+    #instance.text = formatted_text
+    #The commented code above ensures that the text in the database is formarrted as required.
+    #However, not necessary for now.
+
     asyncio.run(main())
