@@ -77,7 +77,19 @@ function Blog(props) {
                       }} style={{ margin: "10px" }}>DELETE</Button>
       
                       <h6 style={{ fontSize: "smaller" }}>Published on : {blog.published_date}</h6>
-                      <p style={{ padding: "3px", fontFamily: "serif" }}>{blog.text}</p>
+                      
+                        {/* Note that we use React.Fragment instead of a div to avoid creating extra DOM nodes. 
+                        This is a performance optimization that can improve the performance of your app */}
+
+                        
+                        <p style={{ padding: "3px", fontFamily: "serif" }}>
+                            {blog.text.split("\n").map((text, index) => (
+                                <React.Fragment key={index}>
+                                    {text}
+                                    <br />
+                                </React.Fragment>
+                            ))}
+                        </p>
       
                       <div id='update-container'>
                           {updateId === blog.id && <Update id={updateId} title={updateTitle} text={updateText} />}
